@@ -20,12 +20,20 @@ class PropiedadController {
       return $this->model->getBuscadorVenta($data_buscador);
     }
 
+    public function getBuscadorSubasta($data_buscador = array()){
+      return $this->model->getBuscadorSubasta($data_buscador);
+    }
+
     public function getCodigoTelefonico(){
       return $this->model->getCodigoTelefonico();
     }
 
     public function getDestacados(){
       return $this->model->getDestacados();
+    }
+
+    public function getDestacadosSubasta(){
+      return $this->model->getDestacadosSubasta();
     }
 
     public function __destruct(){

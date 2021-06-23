@@ -174,32 +174,53 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <form action="/buscador" method="post">
+            <form action="/subastas" method="post">
+            <input type="hidden" name="action" value="1">
             <div class="row">
                 <div class="col-md-3">
                     <label for="">Tipo Propiedad</label>
-                    <select name="propiedad_subasta" id="propiedad_subasta" class="custom-select">
+                    <select name="propiedad_subasta>" id="propiedad_subasta" class="custom-select">
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="">Pais</label>
-                    <select name="pais_subasta" id="pais_subasta" onchange="selectRegion(this.value, '_subasta')" class="custom-select">
+                    <select name="pais_subasta" id="pais_subasta" onchange="selectRegion(this.value)" class="custom-select">
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="">Región</label>
-                    <select name="region_subasta" id="region_subasta" onchange="selectComuna(this.value, '_subasta')" class="custom-select">
+                    <select name="region_subasta" id="region_subasta" onchange="selectComuna(this.value)" class="custom-select">
                         <option value="">Seleccione Pais</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="">Comuna</label>
                     <select name="comuna_subasta" id="comuna_subasta" class="custom-select">
                         <option value="">Seleccione Región</option>
                     </select>
                 </div>
-                <div class="col-md-3 align-self-end mt-1">
-                    <button class="btn btn-success w-100" onclick="buscador_subasta()">Buscar</button>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-3">
+                    <label for="">Dormitorios</label>
+                    <input type="text" name="dormitorio_subasta" id="dormitorio_subasta" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Baños</label>
+                    <input type="text" name="banos_subasta" id="banos_subasta" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Estacionamientos</label>
+                    <input type="text" name="estacionamiento_subasta" id="estacionamiento_subasta" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Bodegas</label>
+                    <input type="text" name="bodega_subasta" id="bodega_subasta" class="form-control">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12 align-self-end">
+                    <button class="btn btn-success w-100">Buscar</button>
                 </div>
             </div>
             </form>
@@ -217,18 +238,8 @@
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" onclick="detallePropiedad(1)">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="./public/img/inicio_4.jpg" alt="..." />
-                    </div>
-                </div>
+            <div id="cuerpoDestacadoSubasta" class="row justify-content-center">
+                
             </div>
         </div>
     </section>

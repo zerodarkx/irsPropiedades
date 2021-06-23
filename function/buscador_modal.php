@@ -29,10 +29,10 @@ switch ($opcion) {
             foreach ($buscador as $key => $value) {
                 $imagen_controllador = new ImagenController();
                 $imagen = $imagen_controllador->getImagenFrontis($value['id']);
-                if (count($imagen) > 0) { //https://dsalp.com/public/propiedades/
-                    $path = 'http://sistema/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
+                if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
+                    $path = 'https://dsalp.com/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
                 }else{
-                    $path = 'https://dsalp.com/public/img/mantencion.jpg';
+                    $path = 'https://dsalp.com/public/img/sin_imagen.jpg';
                 }
                 
                 $html.='
@@ -166,10 +166,10 @@ switch ($opcion) {
         $propiedad              = $propiedad_controller->getBuscadorVenta(array("t1.id_propiedad" => $id_propiedad));
         $imagen_controllador    = new ImagenController();
         $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
-        if (count($imagen) > 0) { //https://dsalp.com/public/propiedades/
-            $frontis = ($imagen[0]['id_tipo'] == 1) ? 'http://sistema/public/propiedades/'.$id_propiedad.'/'.$imagen[0]['arc'] : 'https://dsalp.com/public/img/mantencion.jpg';
+        if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
+            $frontis = ($imagen[0]['id_tipo'] == 1) ? 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[0]['arc'] : 'https://dsalp.com/public/img/mantencion.jpg';
         }else{
-            $frontis = 'https://dsalp.com/public/img/mantencion.jpg';
+            $frontis = 'https://dsalp.com/public/img/sin_imagen.jpg';
         }
         
 
@@ -196,7 +196,7 @@ switch ($opcion) {
 
                                 <div class="row mb-4">';
         for ($i=1; $i < count($imagen); $i++) {
-            $path = 'http://sistema/public/propiedades/'.$id_propiedad.'/'.$imagen[$i]['arc'];
+            $path = 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[$i]['arc'];
             $html.='
                                     <div class="col-md-6">
                                         <img class="imagen-modal-buscador rounded" src="'.$path.'" alt="..." />
@@ -219,6 +219,171 @@ switch ($opcion) {
                                     <tr>
                                         <td class="textoIzquirda">Metros Útiles</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['m_contruidos'].' m<sup>2</sup></td>
+                                        <td class="textoIzquirda">Estacionamientos</td>
+                                        <td class="textoIzquirda">'.$propiedad[0]['estacionamiento'].'</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textoIzquirda">Dirección</td>
+                                        <td class="textoIzquirda">'.$propiedad[0]['direccion'].'</td>
+                                        <td class="textoIzquirda">Baños</td>
+                                        <td class="textoIzquirda">'.$propiedad[0]['banos'].'</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textoIzquirda">Valor Propiedad</td>
+                                        <td class="textoIzquirda">'.number_format($propiedad[0]['valorPropiedad'], 0, ',' , '.').'</td>
+                                        <td class="textoIzquirda">Bodegas</td>
+                                        <td class="textoIzquirda">'.$propiedad[0]['bodega'].'</td>
+                                    </tr>
+                                </table>
+                                <div class="modal-footer mt-3">
+                                    <!--button type="button" class="btn btn-primary">Save changes</button -->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>';
+        
+        echo $html;
+        break;
+
+    case '4': //detalle del buscador de subasta
+    
+        //datos a recibir
+        $data_buscador = array(
+            "id_tipo_propiedad"     => isset($_POST['propiedad']) ? $_POST['propiedad'] : '' ,
+            "id_pais"               => isset($_POST['pais']) ? $_POST['pais'] : '' ,
+            "t3.id_region"          => isset($_POST['region']) ? $_POST['region'] : '' ,
+            "t2.id_comuna"          => isset($_POST['comuna']) ? $_POST['comuna'] : '',
+            "banos"                 => isset($_POST['banos']) ? $_POST['banos'] : '',
+            "estacionamiento"       => isset($_POST['estacionamiento']) ? $_POST['estacionamiento'] : '',
+            "bodega"                => isset($_POST['bodega']) ? $_POST['bodega'] : '',
+            "dormitorio"            => isset($_POST['dormitorio']) ? $_POST['dormitorio'] : '',
+            "ordenar"               => $_POST['ordenar']
+        );
+
+        $buscador_controller    = new PropiedadController();
+        $buscador               = $buscador_controller->getBuscadorSubasta($data_buscador);
+        
+        $html= '
+        <div class="row">';
+        
+        if (count($buscador) > 0) {
+            
+            foreach ($buscador as $key => $value) {
+                $imagen_controllador = new ImagenController();
+                $imagen = $imagen_controllador->getImagenFrontis($value['id']);
+                if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
+                    $path = 'https://dsalp.com/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
+                }else{
+                    $path = 'https://dsalp.com/public/img/sin_imagen.jpg';
+                }
+                
+                $html.='
+                    <div class="col-md-4 card mt-1 ml-1">
+                        <img class="card-img-top mt-2 imagen-buscador" src="'.$path.'" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">'.$value['propiedad'].', '.$value['comuna'].'</h5>
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%">Metros Totales</td>
+                                    <td>'.$value['m_terreno'].' m<sup>2</sup></td>
+                                </tr>
+                                <tr>
+                                    <td>Metros Útiles</td>
+                                    <td>'.$value['m_contruidos'].' m<sup>2</sup></td>
+                                </tr>
+                                <tr>
+                                    <td>Dirección</td>
+                                    <td>'.$value['direccion'].'</td>
+                                </tr>
+                                <tr>
+                                    <td>Valor Propiedad</td>
+                                    <td>'.number_format($value['valorPropiedad'], 0, ',' , '.').'</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-success btn-block" onclick="detallePropiedad('.$value['id'].')">Ver Detalle</button>
+                        </div>
+                    </div>
+                ';
+            }
+        }else{
+            $html.='<h4 class="mt-4">No Existen datos por los filtros indicados</h4>';
+        }
+
+        $html.='
+        </div>
+        ';
+        echo ($html);
+
+        break;
+
+    case '5': //detalle de la propiedad subasta
+        $id_propiedad = $_POST['id_propiedad'];
+
+        $propiedad_controller   = new PropiedadController();
+        $propiedad              = $propiedad_controller->getBuscadorSubasta(array("t1.id_propiedad" => $id_propiedad));
+        $imagen_controllador    = new ImagenController();
+        $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
+        if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
+            $frontis = ($imagen[0]['id_tipo'] == 1) ? 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[0]['arc'] : 'https://dsalp.com/public/img/mantencion.jpg';
+        }else{
+            $frontis = 'https://dsalp.com/public/img/sin_imagen.jpg';
+        }
+        
+
+        $html = ' 
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Portfolio Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">'.$propiedad[0]['propiedad'].', '.$propiedad[0]['comuna'].', #'.$id_propiedad.'</h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Portfolio Modal - Image-->
+                                <img class="img-fluid rounded" src="'.$frontis.'" alt="..." />
+
+                                <div class="row mb-4">';
+        for ($i=1; $i < count($imagen); $i++) {
+            $path = 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[$i]['arc'];
+            $html.='
+                                    <div class="col-md-6">
+                                        <img class="imagen-modal-buscador rounded" src="'.$path.'" alt="..." />
+                                    </div>
+            ';
+        }
+                                
+
+        $html.='
+                                </div>
+
+                                <!-- Portfolio Modal - Text-->
+                                <table width="100%">
+                                    <tr>
+                                        <td width="30%" class="textoIzquirda">Metros Totales</td>
+                                        <td width="20%" class="textoIzquirda">'.number_format($propiedad[0]['m_terreno'], 0, ',', '.').' m<sup>2</sup></td>
+                                        <td width="30%" class="textoIzquirda">Dormitorios</td>
+                                        <td width="20%" class="textoIzquirda">'.$propiedad[0]['dormitorio'].'</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textoIzquirda">Metros Útiles</td>
+                                        <td class="textoIzquirda">'.number_format($propiedad[0]['m_contruidos'], 0, ',', '.').' m<sup>2</sup></td>
                                         <td class="textoIzquirda">Estacionamientos</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['estacionamiento'].'</td>
                                     </tr>
