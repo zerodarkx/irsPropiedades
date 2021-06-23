@@ -34,7 +34,14 @@ class Propiedad extends Model{
       $where = '';
       foreach ($data_buscador as $key => $value) {
         if ($value) {
-          $where.= 'AND '.$key.' = '. $value. ' ';
+          $identificador = substr($value, 0, -1);
+          $valor = substr($value, -1);
+          if ($key == 'ordenar') {
+            $where.="ORDER BY valor_propiedad ".$value;
+          }else{
+            $where.= ($identificador == '>') ? 'AND '.$key.' >= '. $valor. ' ' : 'AND '.$key.' = '. $value. ' ';
+          }
+          
         }
       }
       

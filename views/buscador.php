@@ -110,22 +110,53 @@
                     </select>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-md-3">
+            <div class="row mt-2 justify-content-center">
+                <div class="col-md-2">
                     <label for="">Dormitorios</label>
-                    <input type="text" name="dormitorio" id="dormitorio" class="form-control">
+                    <select name="dormitorio" id="dormitorio" class="custom-select">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value=">3">3 o mas</option>
+                    </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="">Baños</label>
-                    <input type="text" name="banos" id="banos" class="form-control">
+                    <select name="banos" id="banos" class="custom-select">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value=">3">3 o mas</option>
+                    </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="">Estacionamientos</label>
-                    <input type="text" name="estacionamiento" id="estacionamiento" class="form-control">
+                    <select name="estacionamiento" id="estacionamiento" class="custom-select">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value=">3">3 o mas</option>
+                    </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="">Bodegas</label>
-                    <input type="text" name="bodega" id="bodega" class="form-control">
+                    <select name="bodega" id="bodega" class="custom-select">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value=">3">3 o mas</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="">Ordenar</label>
+                    <select name="ordenar" id="ordenar" class="custom-select">
+                        <option value="ASC">Menor a Mayor</option>
+                        <option value="DESC">Mayor a Menor</option>
+                    </select>
                 </div>
             </div>
             <div class="row mt-2">
@@ -145,7 +176,7 @@
             <div class="row">
                 <!-- Footer Location-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Ubicacíon</h4>
+                    <h4 class="text-uppercase mb-4">Ubicación</h4>
                     <p class="lead mb-0">
                         Apoquindo 5583, Oficina 151
                         <br />

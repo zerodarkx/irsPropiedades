@@ -14,7 +14,8 @@ switch ($opcion) {
             "banos"                 => isset($_POST['banos']) ? $_POST['banos'] : '',
             "estacionamiento"       => isset($_POST['estacionamiento']) ? $_POST['estacionamiento'] : '',
             "bodega"                => isset($_POST['bodega']) ? $_POST['bodega'] : '',
-            "dormitorio"            => isset($_POST['dormitorio']) ? $_POST['dormitorio'] : ''
+            "dormitorio"            => isset($_POST['dormitorio']) ? $_POST['dormitorio'] : '',
+            "ordenar"               => $_POST['ordenar']
         );
 
         $buscador_controller    = new PropiedadController();

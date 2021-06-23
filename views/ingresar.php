@@ -172,7 +172,7 @@
             <div class="row">
                 <!-- Footer Location-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Ubicacíon</h4>
+                    <h4 class="text-uppercase mb-4">Ubicación</h4>
                     <p class="lead mb-0">
                         Apoquindo 5583, Oficina 151
                         <br />
