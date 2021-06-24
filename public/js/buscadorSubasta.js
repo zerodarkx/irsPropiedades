@@ -158,7 +158,7 @@ const buscador = () => {
 const detallePropiedad = (propiedad) => {
     $.post("./funciones", {
         f: 'buscador_modal',
-        opc: 3,
+        opc: 5,
         id_propiedad: propiedad
     })
     .done(function (result) {

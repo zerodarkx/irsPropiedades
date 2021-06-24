@@ -27,7 +27,7 @@ switch ($opcion) {
         $html = '';
         
         for ($i=0; $i < count($propiedad); $i++) {
-            $path = (file_exists('https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/')) 
+            $path = (!file_exists('https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/'.$propiedad[$i]['arc'])) 
                         ? 'https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/'.$propiedad[$i]['arc']
                         : 'https://dsalp.com/public/img/sin_imagen.jpg';
             $html.= '
@@ -53,7 +53,7 @@ switch ($opcion) {
         
         if (count($propiedad) > 0) {
             for ($i=0; $i < count($propiedad); $i++) {
-                $path = (file_exists('https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/')) 
+                $path = (!file_exists('https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/')) 
                         ? 'https://dsalp.com/public/propiedades/'.$propiedad[$i]['id'].'/'.$propiedad[$i]['arc']
                         : 'https://dsalp.com/public/img/sin_imagen.jpg';
                 $html.= '

@@ -29,7 +29,7 @@ switch ($opcion) {
             foreach ($buscador as $key => $value) {
                 $imagen_controllador = new ImagenController();
                 $imagen = $imagen_controllador->getImagenFrontis($value['id']);
-                if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
+                if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
                     $path = 'https://dsalp.com/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
                 }else{
                     $path = 'https://dsalp.com/public/img/sin_imagen.jpg';
@@ -166,7 +166,7 @@ switch ($opcion) {
         $propiedad              = $propiedad_controller->getBuscadorVenta(array("t1.id_propiedad" => $id_propiedad));
         $imagen_controllador    = new ImagenController();
         $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
-        if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
+        if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
             $frontis = ($imagen[0]['id_tipo'] == 1) ? 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[0]['arc'] : 'https://dsalp.com/public/img/mantencion.jpg';
         }else{
             $frontis = 'https://dsalp.com/public/img/sin_imagen.jpg';
@@ -194,7 +194,7 @@ switch ($opcion) {
                                 <!-- Portfolio Modal - Image-->
                                 <img class="img-fluid rounded" src="'.$frontis.'" alt="..." />
 
-                                <div class="row mb-4">';
+                                <div class="row mb-4" style="margin-top:50px;">';
         for ($i=1; $i < count($imagen); $i++) {
             $path = 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[$i]['arc'];
             $html.='
@@ -229,7 +229,7 @@ switch ($opcion) {
                                         <td class="textoIzquirda">'.$propiedad[0]['banos'].'</td>
                                     </tr>
                                     <tr>
-                                        <td class="textoIzquirda">Valor Propiedad</td>
+                                        <td class="textoIzquirda">Valor Propiedad (UF)</td>
                                         <td class="textoIzquirda">'.number_format($propiedad[0]['valorPropiedad'], 0, ',' , '.').'</td>
                                         <td class="textoIzquirda">Bodegas</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['bodega'].'</td>
@@ -275,7 +275,7 @@ switch ($opcion) {
             foreach ($buscador as $key => $value) {
                 $imagen_controllador = new ImagenController();
                 $imagen = $imagen_controllador->getImagenFrontis($value['id']);
-                if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
+                if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
                     $path = 'https://dsalp.com/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
                 }else{
                     $path = 'https://dsalp.com/public/img/sin_imagen.jpg';
@@ -300,8 +300,8 @@ switch ($opcion) {
                                     <td>'.$value['direccion'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>Valor Propiedad</td>
-                                    <td>'.number_format($value['valorPropiedad'], 0, ',' , '.').'</td>
+                                    <td><strong>Valor Min UF</strong></td>
+                                    <td><strong>'.number_format($value['valorPropiedad'], 0, ',' , '.').'</strong></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -331,7 +331,7 @@ switch ($opcion) {
         $propiedad              = $propiedad_controller->getBuscadorSubasta(array("t1.id_propiedad" => $id_propiedad));
         $imagen_controllador    = new ImagenController();
         $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
-        if (count($imagen) > 0 && file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
+        if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
             $frontis = ($imagen[0]['id_tipo'] == 1) ? 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$imagen[0]['arc'] : 'https://dsalp.com/public/img/mantencion.jpg';
         }else{
             $frontis = 'https://dsalp.com/public/img/sin_imagen.jpg';
@@ -394,7 +394,7 @@ switch ($opcion) {
                                         <td class="textoIzquirda">'.$propiedad[0]['banos'].'</td>
                                     </tr>
                                     <tr>
-                                        <td class="textoIzquirda">Valor Propiedad</td>
+                                        <td class="textoIzquirda">Valor Propiedad (UF)</td>
                                         <td class="textoIzquirda">'.number_format($propiedad[0]['valorPropiedad'], 0, ',' , '.').'</td>
                                         <td class="textoIzquirda">Bodegas</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['bodega'].'</td>

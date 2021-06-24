@@ -39,8 +39,9 @@
                                 href="#page-top">Inicio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#buscador">Buscador</a></li>
+                        <!--
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#buscadorSubasta">Subastas</a></li>
+                            href="#buscadorSubasta">Subastas</a></li>-->
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#destacados">Destacados</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
@@ -164,11 +165,12 @@
             </div>
         </div>
     </section>
+    <!--
     <section class="page-section" id="buscadorSubasta">
         <div class="container">
-            <!-- Portfolio Section Heading-->
+        
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Propiedades en Subasta</h2>
-            <!-- Icon Divider-->
+        
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
@@ -226,23 +228,23 @@
             </form>
         </div>
     </section>
-    <!-- Portfolio Section-->
+    
     <section class="page-section portfolio" id="destacadosSubasta">
         <div class="container">
-            <!-- Portfolio Section Heading-->
+        
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Subastas Destacadas</h2>
-            <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Portfolio Grid Items-->
+        
             <div id="cuerpoDestacadoSubasta" class="row justify-content-center">
                 
             </div>
         </div>
     </section>
+    -->
     <!-- Contact Section-->
     <section class="page-section" id="contact">
         <div class="container">
