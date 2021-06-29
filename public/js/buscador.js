@@ -170,4 +170,10 @@ const detallePropiedad = (propiedad) => {
     });
 };
 
+const reservar = (propiedad) => {
+    document.getElementById("idpropiedaddetalle").value = propiedad;
+    let formulario = document.getElementById("detallePropiedad");
+    formulario.submit();
+}
+
 buscador();

@@ -36,13 +36,13 @@ switch ($opcion) {
                 }
                 
                 $html.='
-                    <div class="col-md-4 card mt-1 ml-1">
+                    <div class="col-md-4 mt-1">
                         <img class="card-img-top mt-2 imagen-buscador" src="'.$path.'" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">'.$value['propiedad'].', '.$value['comuna'].'</h5>
                             <table width="100%">
                                 <tr>
-                                    <td width="50%">Metros Totales</td>
+                                    <td width="35%">Metros Totales</td>
                                     <td>'.$value['m_terreno'].' m<sup>2</sup></td>
                                 </tr>
                                 <tr>
@@ -55,14 +55,10 @@ switch ($opcion) {
                                 </tr>
                                 <tr>
                                     <td>Valor Propiedad</td>
-                                    <td>'.number_format($value['valorPropiedad'], 0, ',' , '.').'</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>'.number_format($value['valorPropiedad'], 0, ',' , '.').' UF</td>
                                 </tr>
                             </table>
-                            <button class="btn btn-success btn-block" onclick="detallePropiedad('.$value['id'].')">Ver Detalle</button>
+                            <button class="btn btn-success btn-block mt-3" onclick="detallePropiedad('.$value['id'].')">Ver Detalle</button>
                         </div>
                     </div>
                 ';
@@ -182,7 +178,7 @@ switch ($opcion) {
                 <div class="modal-body text-center pb-5">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-10">
                                 <!-- Portfolio Modal - Title-->
                                 <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">'.$propiedad[0]['propiedad'].', '.$propiedad[0]['comuna'].', #'.$id_propiedad.'</h2>
                                 <!-- Icon Divider-->
@@ -192,7 +188,7 @@ switch ($opcion) {
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded" src="'.$frontis.'" alt="..." />
+                                <img class="rounded imagen-principal" src="'.$frontis.'" alt="..." />
 
                                 <div class="row mb-4" style="margin-top:50px;">';
         for ($i=1; $i < count($imagen); $i++) {
@@ -211,9 +207,9 @@ switch ($opcion) {
                                 <!-- Portfolio Modal - Text-->
                                 <table width="100%">
                                     <tr>
-                                        <td width="30%" class="textoIzquirda">Metros Totales</td>
-                                        <td width="20%" class="textoIzquirda">'.$propiedad[0]['m_terreno'].' m<sup>2</sup></td>
-                                        <td width="30%" class="textoIzquirda">Dormitorios</td>
+                                        <td width="20%" class="textoIzquirda">Metros Totales</td>
+                                        <td width="40%" class="textoIzquirda">'.$propiedad[0]['m_terreno'].' m<sup>2</sup></td>
+                                        <td width="20%" class="textoIzquirda">Dormitorios</td>
                                         <td width="20%" class="textoIzquirda">'.$propiedad[0]['dormitorio'].'</td>
                                     </tr>
                                     <tr>
@@ -236,8 +232,12 @@ switch ($opcion) {
                                     </tr>
                                 </table>
                                 <div class="modal-footer mt-3">
-                                    <!--button type="button" class="btn btn-primary">Save changes</button -->
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-success" onclick="reservar('.$id_propiedad.')">Reservar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -302,10 +302,6 @@ switch ($opcion) {
                                 <tr>
                                     <td><strong>Valor Min UF</strong></td>
                                     <td><strong>'.number_format($value['valorPropiedad'], 0, ',' , '.').'</strong></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
                                 </tr>
                             </table>
                             <button class="btn btn-success btn-block" onclick="detallePropiedad('.$value['id'].')">Ver Detalle</button>

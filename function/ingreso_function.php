@@ -55,6 +55,46 @@ switch ($opc) {
         echo $select;
         # code...
         break;
+
+    case '3': //ingreso consulta en detatalle de la propiedad
+
+        $data_solicitud = array(
+            "id_propiedad"       => addslashes($_POST['id_propiedad']),
+            "nombre_cliente"     => addslashes($_POST['nombre_cliente']),
+            "correo_cliente"     => addslashes($_POST['correo_cliente']),
+            "telefono_cliente"   => addslashes($_POST['telefono_cliente']),
+            "mensaje_cliente"    => addslashes($_POST['mensaje_cliente'])
+        );
+
+        $propiedad_controller = new PropiedadController();
+        $propiedad = $propiedad_controller->setSolicitudPropiedad($data_solicitud);
+
+        if ($propiedad) {
+            $enviarCorreo_controller = new EnviarCorreo();
+            $enviarCorreo_controller->sendNotificacion(array(
+                "asunto_correo" => "Solicitar Informacion",
+                "cuerpo_correo" => 
+                    "Estimado,<br>
+                    Muchas Gracias por preferir Irs Propiedades, pronto un ejecutivo se pondra en contacto con usted. <br>"
+            ));
+
+            $resultado = array(
+                "val" => true,
+                "tit" => "Exito",
+                "mes" => "Su mensaje fue enviado con Exito, un ejecutivo se pondra en contacto con usted",
+                "ico" => "success"
+            );
+        }else{
+            $resultado = array(
+                "val" => false,
+                "tit" => "Error",
+                "mes" => "No se puedo enviar la solicitud intente en unos minutos \n" .__FILE__ . " " .__LINE__ ,
+                "ico" => "error"
+            );
+        }
+
+        echo json_encode($resultado);
+        break;
     
     default:
         # code...

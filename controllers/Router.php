@@ -32,6 +32,13 @@ class Router{
 			case 'subastas':
 				$controlador->load_view( 'buscadorSubasta' );
 				break;
+
+			case 'detallePropiedad':
+				$controlador->load_view( 'detallePropiedad' );
+				break;
+			case 'correo':
+				$controlador->load_view( 'prueba' );
+				break;
 				
 			default:
 				$controlador->load_view('error-404');

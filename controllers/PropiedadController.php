@@ -36,6 +36,10 @@ class PropiedadController {
       return $this->model->getDestacadosSubasta();
     }
 
+    public function setSolicitudPropiedad($data_solicitud = array()){
+      return $this->model->setSolicitudPropiedad($data_solicitud);
+    }
+
     public function __destruct(){
 		$this;
 	}

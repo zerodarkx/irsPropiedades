@@ -71,7 +71,7 @@ const selectPais = () => {
     })
     .done(function (result) {
         document.getElementById('pais').innerHTML = result;
-        document.getElementById('pais_subasta').innerHTML = result;
+        //document.getElementById('pais_subasta').innerHTML = result;
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         alert('Error!! : ' + jqXHR.status);
@@ -115,7 +115,7 @@ const selectPropiedad = () => {
     })
     .done(function (result) {
         document.getElementById('propiedad').innerHTML = result;
-        document.getElementById('propiedad_subasta').innerHTML = result;
+        //document.getElementById('propiedad_subasta').innerHTML = result;
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         alert('Error!! : ' + jqXHR.status);
@@ -181,4 +181,13 @@ const destacadosSubasta = () => {
 selectPropiedad();
 selectPais();
 destacados();
-destacadosSubasta();
+//destacadosSubasta();
+
+const reservar = (propiedad) => {
+    //detallePropiedad
+    document.getElementById("opc").value = "1";
+    document.getElementById("detatllepropiedad").value = propiedad;
+
+    let formulario = document.getElementById("detallePropiedad");
+    formulario.submit();
+}

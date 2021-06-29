@@ -1,4 +1,6 @@
 <?php
+    $footer             = "buscador";
+
     $action             = (isset($_POST['action'])) ? $_POST['action'] : 0;
     $propiedad          = (isset($_POST['propiedad'])) ? $_POST['propiedad'] : '';
     $pais               = (isset($_POST['pais'])) ? $_POST['pais'] : '';
@@ -169,57 +171,9 @@
             <div id="cuerpoBuscador" class="mt-2">
                 
             </div>
+            <form id="detallePropiedad" action="./detallePropiedad" method="post">
+                <input type="hidden" name="opc" value="1">
+                <input type="hidden" id="idpropiedaddetalle" name="propiedad">
+            </form>
         </div>
     </section>
-    <!-- Footer-->
-    <footer class="footer text-center">
-        <div class="container">
-            <div class="row">
-                <!-- Footer Location-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Ubicación</h4>
-                    <p class="lead mb-0">
-                        Apoquindo 5583, Oficina 151
-                        <br />
-                        Las Condes. Chile
-                    </p>
-                </div>
-                <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    
-                </div>
-                <!-- Footer About Text-->
-                <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">IRS Propiedades</h4>
-                    <p class="lead mb-0">
-                        
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; IRS Propiedades</small></div>
-    </div>
-    <!-- Portfolio Modals-->
-    <div class="modal fade" id="modalPrincipal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
-	</div>
-
-    <div class="modal fade" id="portfolioModal" tabindex="-1">
-    </div>
-
-    <!-- Bootstrap core JS-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="./public/js/buscador.js"></script>
-</body>
-
-</html>

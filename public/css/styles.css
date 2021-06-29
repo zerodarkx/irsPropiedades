@@ -3947,8 +3947,8 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  /*padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;*/
   margin-right: 1rem;
   font-size: 1.25rem;
   text-decoration: none;
@@ -10892,8 +10892,8 @@ html {
 }
 
 #mainNav {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  /*padding-top: 1rem;
+  padding-bottom: 1rem;*/
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
 }
@@ -10922,8 +10922,8 @@ html {
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    /*padding-top: 1.5rem;
+    padding-bottom: 1.5rem;*/
     transition: padding-top 0.3s, padding-bottom 0.3s;
   }
   #mainNav .navbar-brand {
@@ -11036,8 +11036,8 @@ html {
 }
 
 .footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: #2c3e50;
   color: #fff;
 }
@@ -11087,6 +11087,11 @@ html {
   text-align: left;
 }
 
+.imagen-principal{
+  width: 100% !important;
+  height: 400px !important;
+}
+
 .imagen-buscador{
   height: 200px !important;
 }
@@ -11105,4 +11110,20 @@ html {
   .inicioImagenes{
     margin-top: 90px !important;
   }
+}
+@media (min-width:500px){
+  .mt-grande{
+    margin-top: 50px;
+  }
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  /*background: url('http://sistema/public/img/loading.gif') 50% 50% no-repeat ;*/
+  opacity: .8;
 }
