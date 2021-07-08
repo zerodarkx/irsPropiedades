@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-lg bg-irsPropiedades text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" style="width: 35%;" href="/">
-                    <img src="./public/img/irsPropiedadesLogo.png" alt="" style="width: 50%; height: 50px;">
+                    <img src="./public/img/irsPropiedadesLogo.png" alt="" class="logoInicio" style="width: 30%; height: 80px;">
                 </a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -43,9 +43,10 @@
                                 href="/">Inicio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/buscador">Buscador</a></li>
-                        <!--
+                        <!--<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="/subastas">Subastas</a></li>-->
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#destacados">Destacados</a></li>-->
+                            href="/#destacados">Destacados</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                                 href="/ingresar">Ingresar</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
@@ -124,7 +125,7 @@
             <div class="row mt-2">
                 <div class="col-md-3 validar">
                     <label for="">Valor Venta UF</label>
-                    <input type="text" name="valorVenta" id="valorVenta" class="form-control">
+                    <input type="text" name="valorVenta" id="valorVenta" onkeyup="format(this)" class="form-control">
                 </div>
                 <div class="col-md-3 validar">
                     <label for="">Metros Totales</label>

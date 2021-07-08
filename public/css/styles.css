@@ -11127,3 +11127,7 @@ html {
   /*background: url('http://sistema/public/img/loading.gif') 50% 50% no-repeat ;*/
   opacity: .8;
 }
+
+.imagenCaruselLargo{
+  height: 600px !important;
+}

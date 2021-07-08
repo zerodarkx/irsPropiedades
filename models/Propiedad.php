@@ -10,11 +10,54 @@ class Propiedad extends Model{
     $this->query = "INSERT INTO propiedad (id_ejecutivo, id_cod_telefono, id_comuna, rut_propiedad, nombre_propiedad, correo_propiedad, telefono_propiedad, direccion_propiedad, id_tipo_propiedad, rol_propiedad, valor_propiedad, mTerreno, mConstruidos, observaciones, banos, estacionamiento, dormitorio, bodega)
                       VALUES (1, $cod_tel, $comuna, '$rut_pro', '$nom_pro', '$correo_pro', $telefono, '$direccion', '$propiedad', '$rol_pro', '$valorVenta', '$m_terreno', '$m_construidos', '$obs', $banos, $estacionamiento, $dormitorio, $bodega)";
 
-    $val = $this->set_query();
+    $val = $this->set_query_id();
     return $val;
 
   }
-  public function get(){}
+  public function get($id_propiedad = ''){
+    $this->query = "SELECT 
+                      t1.id_propiedad AS id,
+                      t1.id_cliente AS cliente,
+                      t1.id_ejecutivo AS id_ejecutivo,
+                      t1.id_cod_telefono AS cod_telefono,
+                      t1.id_tipo_propiedad AS id_tipo_propiedad,
+                      t1.id_comuna AS id_comuna,
+                      t1.id_estado AS id_estado,
+                      t1.rut_propiedad AS rut,
+                      t1.nombre_propiedad AS nombre_propiedad,
+                      t1.correo_propiedad AS correo_propiedad,
+                      t1.telefono_propiedad AS telefono,
+                      t1.direccion_propiedad AS direccion,
+                      t1.rol_propiedad AS rol,
+                      t1.valor_propiedad AS valorPropiedad,
+                      t1.mTerreno AS m_terreno,
+                      t1.mConstruidos AS m_contruidos,
+                      t1.banos AS banos,
+                      t1.dormitorio AS dormitorio,
+                      t1.bodega AS bodega,
+                      t1.estacionamiento AS estacionamiento,
+                      DATEDIFF(now(), t1.fecha_ingreso) AS p,
+                      t2.nombre_comuna AS comuna,
+                      t3.nombre_region AS region,
+                      t3.id_region AS id_region,
+                      t4.nombre AS pais,
+                      t4.id AS id_pais,
+                      t5.nombre_propiedad AS propiedad
+                    FROM propiedad AS t1
+                    INNER JOIN comunas AS t2 ON (t2.id_comuna = t1.id_comuna)
+                    INNER JOIN regiones AS t3 ON (t3.id_region = t2.id_region)
+                    INNER JOIN paises AS t4 ON (t4.id = t3.id_pais)
+                    INNER JOIN tipo_propiedades AS t5 ON (t5.id_propiedad = t1.id_tipo_propiedad)
+                    WHERE t1.id_propiedad = $id_propiedad";
+      $this->get_query();
+
+      $data = array();
+
+      foreach ($this->rows as $key => $value) {
+          array_push($data, $value );
+      }
+      return $data;
+  }
   public function del(){}
 
   public function getTipoPropiedad(){
@@ -204,12 +247,33 @@ class Propiedad extends Model{
       $$key = $value;
     }
 
-    $this->query = "INSERT INTO propiedad_cliente (id_propiedad, nombre_cliente, telefono, correo, mensaje)
-                    VALUES ('$id_propiedad', '$nombre_cliente', '$correo_cliente', '$telefono_cliente', '$mensaje_cliente')";
+    $this->query = "INSERT INTO propiedad_cliente (id_propiedad, rut_cliente, nombre_cliente, telefono, correo, mensaje)
+                    VALUES ('$id_propiedad', '$rut_cliente', '$nombre_cliente', '$telefono_cliente', '$correo_cliente', '$mensaje_cliente')";
 
     $val = $this->set_query();
     return $val;
   }
+
+  public function getDetallePropiedad($id_propiedad = ''){
+		$this->query = "SELECT 
+							id_detallePropiedad AS id,
+							id_propiedad AS propiedad,
+							encabezado,
+							direccion,
+							desc_general,
+							desc_zona
+						FROM propiedad_detalle
+						WHERE id_propiedad = $id_propiedad";
+		
+		$this->get_query();
+
+		$data = array();
+
+		foreach ($this->rows as $key => $value) {
+			array_push($data, $value );
+		}
+		return $data;
+	}
 
   public function __destruct(){
     $this;

@@ -5,10 +5,22 @@ $opc = $_POST['opc'];
 switch ($opc) {
     case '1':
         $id_propiedad = $_POST['id_propiedad'];
-        error_log($id_propiedad);
 
-        $imagen_controller  = new ImagenController();
-        $imagen             = $imagen_controller->getImagenesPorPropiedad($id_propiedad);
+        $propiedad_controller   = new PropiedadController();
+        $detalle_controller     = new PropiedadController();
+        $imagen_controller      = new ImagenController();
+
+        $propiedad              = $propiedad_controller->get($id_propiedad);
+        $detalle                = $detalle_controller->getDetallePropiedad($id_propiedad);
+        $imagen                 = $imagen_controller->getImagenesPorPropiedad($id_propiedad);
+
+        $encabezado             = (isset($detalle[0]['encabezado']))
+                                    ? $detalle[0]['encabezado'] 
+                                    : $propiedad[0]['propiedad'].', '.$propiedad[0]['comuna'].', '.$propiedad[0]['region'];
+        $descripcion            = (isset($detalle[0]['desc_general'])) ? str_replace(PHP_EOL, '<p>', $detalle[0]['desc_general']) : 'Sin Descripción';
+        $zona                   = (isset($detalle[0]['desc_zona'])) ? str_replace(PHP_EOL, '<p>', $detalle[0]['desc_zona']) : 'Sin Descripción';
+        $direccion              = (isset($detalle[0]['direccion'])) ? $detalle[0]['direccion'] : 'Sin Dirección';
+        $cant_pisos             = (isset($detalle[0]['cant_pisos'])) ? $detalle[0]['cant_pisos'] : 0;
 
         $html = '
             <div class="col-md-8">
@@ -23,7 +35,7 @@ switch ($opc) {
             $path = 'https://dsalp.com/public/propiedades/'.$id_propiedad.'/'.$value['arc'];
             $html.='
                                 <div class="carousel-item '.$active.'">
-                                    <img class="d-block w-100" src="'.$path.'" alt="slide">
+                                    <img class="d-block w-100 imagenCaruselLargo" src="'.$path.'" alt="slide">
                                 </div>
             ';
             $active = '';
@@ -49,29 +61,49 @@ switch ($opc) {
                         <table width="50%" class="table table-borderless">
                             <tr>
                                 <td width="30%" class="table-active">Superficie total</td>
-                                <td class="table-secondary">1 m<sup>2</sup></td>
+                                <td class="table-secondary">'.$propiedad[0]['m_terreno'].' m<sup>2</sup></td>
                             </tr>
                             <tr>
                                 <td class="table-active">Superficie útil</td>
-                                <td class="table-secondary">1 m<sup>2</sup></td>
+                                <td class="table-secondary">'.$propiedad[0]['m_contruidos'].' m<sup>2</sup></td>
                             </tr>
                             <tr>
                                 <td class="table-active">Dormitorios</td>
-                                <td class="table-secondary">1</td>
+                                <td class="table-secondary">'.$propiedad[0]['dormitorio'].'</td>
                             </tr>
                             <tr>
                                 <td class="table-active">Baños</td>
-                                <td class="table-secondary">1</td>
+                                <td class="table-secondary">'.$propiedad[0]['banos'].'</td>
                             </tr>
                             <tr>
                                 <td class="table-active">Estacionamientos</td>
-                                <td class="table-secondary">1</td>
+                                <td class="table-secondary">'.$propiedad[0]['estacionamiento'].'</td>
                             </tr>
                             <tr>
                                 <td class="table-active">Cantidad de pisos</td>
-                                <td class="table-secondary">1</td>
+                                <td class="table-secondary">'.$cant_pisos.'</td>
                             </tr>
                         </table>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3>Descripción de la Propiedad</h3>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <p>'.$descripcion.'</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3>Descripción de la Ubicación</h3>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <p>'.$zona.'</p>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -84,17 +116,21 @@ switch ($opc) {
                 <input type="hidden" name="opc" value="3">
                 <input type="hidden" name="id_propiedad" value="'.$id_propiedad.'">
                 <div class="row mt-2">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        <label for="">Rut</label>
+                        <input type="text" name="rut_cliente" id="rut_cliente" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
                         <label for="">Nombre</label>
-                        <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
+                        <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="">Correo</label>
-                        <input type="text" name="correo_cliente" id="correo_cliente" class="form-control">
+                        <input type="text" name="correo_cliente" id="correo_cliente" class="form-control" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="">Teléfono</label>
-                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control">
+                        <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" required>
                     </div>
                 </div>
                 <div class="row mt-2" >
@@ -115,20 +151,23 @@ switch ($opc) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Arriendo Casa 3d 1b Rinconada De Maipú / Principio De</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Publicado hace tantos dias</h6>
-                                <h3 class="card-text">Valor Venta 5000 UF</h3>
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-home" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed" aria-hidden="true"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath" aria-hidden="true"></i>
-                                    </li>
-                                </ul>
+                                <h5 class="card-title">'.$encabezado.'</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Publicado hace '.$propiedad[0]['p'].' dias</h6>
+                                <h3 class="card-text">Valor Venta '.number_format($propiedad[0]['valorPropiedad'], 0, ',', '.').' UF</h3>
+                                <table>
+                                    <tr>
+                                        <td width="30px"><i class="fa fa-home" aria-hidden="true"></i></td>
+                                        <td>'.$propiedad[0]['m_contruidos'].' m<sup>2</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-bed" aria-hidden="true"></i></td>
+                                        <td>'.$propiedad[0]['dormitorio'].'</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-bath" aria-hidden="true"></i></td>
+                                        <td>'.$propiedad[0]['banos'].'</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>

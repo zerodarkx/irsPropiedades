@@ -27,19 +27,40 @@ switch ($opc) {
         $propiedad_controller   = new PropiedadController();
         $propiedad              = $propiedad_controller->set($data_propiedad);
 
-        $resultado = ($propiedad)
-            ? array(
+        if ($propiedad) {
+            $enviarCorreo_controller = new EnviarCorreo();
+            $enviarCorreo_controller->sendMail(array(
+                "correo_cliente"    => $_POST['correo_pro'],
+                "asunto_correo"     => "Ingreso Propiedad #".$propiedad,
+                "cuerpo_correo"     => 
+                    "<p>Estimado ".$_POST['nom_pro']."</p>
+                    <p>Su propiedad ha sido ingresada exitosamente al portal. Un ejecutivo lo contactará a la brevedad para validar los datos ingresados.</p>
+                    <p>Saludos.</p>
+                    <img src='cid:logo_irsPropiedades'>
+                    "
+            ));
+
+            $enviarCorreo_controller->sendNotificacion(array(
+                "asunto_correo"     => "Ingreso Propiedad #".$propiedad,
+                "cuerpo_correo"     => 
+                    "   <p>Estimado el Caso #".$propiedad." se incorporo a nuestro sistema</p>"
+            ));
+
+
+            $resultado = array(
                 "val" => true,
                 "tit" => "Exito",
                 "mes" => "En Breve un Ejecutivo se pondra en contacto con usted",
                 "ico" => "success"
-            )
-            : array(
+            );
+        }else{
+            $resultado = array(
                 "val" => false,
                 "tit" => "Error",
                 "mes" => "No se pudo agregar Canal de Contacto \n" .__FILE__ . " " . __LINE__ ,
                 "ico" => "error"
             );
+        }
 
         echo json_encode($resultado);
         break;
@@ -59,11 +80,12 @@ switch ($opc) {
     case '3': //ingreso consulta en detatalle de la propiedad
 
         $data_solicitud = array(
-            "id_propiedad"       => addslashes($_POST['id_propiedad']),
-            "nombre_cliente"     => addslashes($_POST['nombre_cliente']),
-            "correo_cliente"     => addslashes($_POST['correo_cliente']),
-            "telefono_cliente"   => addslashes($_POST['telefono_cliente']),
-            "mensaje_cliente"    => addslashes($_POST['mensaje_cliente'])
+            "id_propiedad"      => addslashes($_POST['id_propiedad']),
+            "rut_cliente"       => addslashes($_POST['rut_cliente']),
+            "nombre_cliente"    => addslashes($_POST['nombre_cliente']),
+            "correo_cliente"    => addslashes($_POST['correo_cliente']),
+            "telefono_cliente"  => addslashes($_POST['telefono_cliente']),
+            "mensaje_cliente"   => addslashes($_POST['mensaje_cliente'])
         );
 
         $propiedad_controller = new PropiedadController();
@@ -71,11 +93,22 @@ switch ($opc) {
 
         if ($propiedad) {
             $enviarCorreo_controller = new EnviarCorreo();
+            $enviarCorreo_controller->sendMail(array(
+                "correo_cliente"    => $_POST['correo_cliente'],
+                "asunto_correo"     => "Solicitar Informacion Propiedad #".$_POST['id_propiedad'],
+                "cuerpo_correo"     => 
+                    "<p>Estimado ".$_POST['nombre_cliente']."</p>
+                    <p>Su cotización ha sido ingresada exitosamente. Un ejecutivo lo contactará a la brevedad para validar la información recibida.</p>
+                    <p>Saludos.</p>
+                    <img src='cid:logo_irsPropiedades'>
+                    "
+            ));
+
             $enviarCorreo_controller->sendNotificacion(array(
-                "asunto_correo" => "Solicitar Informacion",
-                "cuerpo_correo" => 
-                    "Estimado,<br>
-                    Muchas Gracias por preferir Irs Propiedades, pronto un ejecutivo se pondra en contacto con usted. <br>"
+                "asunto_correo"     => "Solicitar Informacion Propiedad #".$_POST['id_propiedad'],
+                "cuerpo_correo"     => 
+                    "   <p>Estimado el Caso #".$_POST['id_propiedad']." Pidio Informacion sobre la Propiedad</p>
+                        <p>Mensaje Del Cliente : ".$_POST['mensaje_cliente']."</p>"
             ));
 
             $resultado = array(

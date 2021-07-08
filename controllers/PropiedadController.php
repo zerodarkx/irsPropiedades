@@ -12,6 +12,10 @@ class PropiedadController {
       return $this->model->set($data_propiedad);
     }
 
+    public function get($id_propiedad){
+      return $this->model->get($id_propiedad);
+    }
+
     public function getTipoPropiedad(){
         return $this->model->getTipoPropiedad();
     }
@@ -40,7 +44,11 @@ class PropiedadController {
       return $this->model->setSolicitudPropiedad($data_solicitud);
     }
 
+    public function getDetallePropiedad($id_propiedad = ''){
+      return $this->model->getDetallePropiedad($id_propiedad);
+    }
+
     public function __destruct(){
-		$this;
-	}
+      $this;
+    }
 }

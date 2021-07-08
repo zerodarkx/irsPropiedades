@@ -234,7 +234,7 @@ switch ($opcion) {
                                 <div class="modal-footer mt-3">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="btn btn-success" onclick="reservar('.$id_propiedad.')">Reservar</button>
+                                            <button class="btn btn-success" onclick="reservar('.$id_propiedad.')">Mas Detalles</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
