@@ -46,7 +46,7 @@ switch ($opc) {
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carusel-imagenes" role="button" data-slide="next">
+                            <a id="siguiente_prueba" class="carousel-control-next" href="#carusel-imagenes" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -84,6 +84,16 @@ switch ($opc) {
                                 <td class="table-secondary">'.$cant_pisos.'</td>
                             </tr>
                         </table>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3>Dirección Aproximada de Propiedad</h3>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <p>'.$direccion.'</p>
                     </div>
                 </div>
                 <div class="row mt-3">

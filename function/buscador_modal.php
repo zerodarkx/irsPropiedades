@@ -159,7 +159,10 @@ switch ($opcion) {
         $id_propiedad = $_POST['id_propiedad'];
 
         $propiedad_controller   = new PropiedadController();
+        $direccion_controller = new PropiedadController();
+        $direccion              = $direccion_controller->getDetallePropiedad($id_propiedad);
         $propiedad              = $propiedad_controller->getBuscadorVenta(array("t1.id_propiedad" => $id_propiedad));
+        $direccion_parcial      = (count($direccion) > 0) ? $direccion[0]['direccion'] : 'Sin Dirección';
         $imagen_controllador    = new ImagenController();
         $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
         if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
@@ -220,7 +223,7 @@ switch ($opcion) {
                                     </tr>
                                     <tr>
                                         <td class="textoIzquirda">Dirección</td>
-                                        <td class="textoIzquirda">'.$propiedad[0]['direccion'].'</td>
+                                        <td class="textoIzquirda">'.$direccion_parcial.'</td>
                                         <td class="textoIzquirda">Baños</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['banos'].'</td>
                                     </tr>

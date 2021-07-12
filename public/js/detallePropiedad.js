@@ -7,6 +7,10 @@ const cuerpoDetalle = () => {
     })
     .done(function (result) {
         document.getElementById('cuerpoDetalle').innerHTML = result;
+        setTimeout(function(){
+            let autoclick = document.getElementById('siguiente_prueba');
+            autoclick.click();
+        },5000);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         alert('Error!! : ' + jqXHR.status);
