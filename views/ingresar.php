@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <title>IRS Propiedades</title>
     <!-- Favicon-->
-    <link rel="shortcut icon" type="image/jpg" href="./public/img/IRS1.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="./public/img/logo_telefono.jpg"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -40,7 +40,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/">Inicio</a></li>
+                            href="/">Inicio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/buscador">Buscador</a></li>
                         <!--<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
@@ -48,15 +48,17 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/#destacados">Destacados</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/ingresar">Ingresar</a></li>
+                            href="/ingresar">Ingresar</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/#contact">Contacto</a></li>
+                            href="/#contact">Contacto</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="./login">Acceder</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </section>
-    <section class="page-section mt-4" id="buscador">
+    <section class="secciones_solas mt-4" id="buscador">
         <div class="container">
             <!-- Portfolio Section Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ingrese Datos de Propiedad</h2>
@@ -170,5 +172,14 @@
                 </div>
             </div>
             </form>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6">
+                    <h4 class="text-center">Tutorial Ingreso Propiedad</h4>
+                    <video class="w-100" autoplay loop controls>
+                        <source src="./public/videos/Ingresar_propiedad.mp4" width="640" height="480" type="video/mp4" />
+                    </video>
+                </div>
+                
+            </div>
         </div>
     </section>

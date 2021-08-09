@@ -327,7 +327,10 @@ switch ($opcion) {
         $id_propiedad = $_POST['id_propiedad'];
 
         $propiedad_controller   = new PropiedadController();
+        $direccion_controller   = new PropiedadController();
         $propiedad              = $propiedad_controller->getBuscadorSubasta(array("t1.id_propiedad" => $id_propiedad));
+        $direccion              = $direccion_controller->getDetallePropiedad($id_propiedad);
+        $direccion_parcial      = (count($direccion) > 0) ? $direccion[0]['direccion'] : 'Sin Dirección';
         $imagen_controllador    = new ImagenController();
         $imagen                 = $imagen_controllador->getImagenesPorPropiedad($id_propiedad);
         if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$id_propiedad.'/')) {
@@ -346,7 +349,7 @@ switch ($opcion) {
                 <div class="modal-body text-center pb-5">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-10">
                                 <!-- Portfolio Modal - Title-->
                                 <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">'.$propiedad[0]['propiedad'].', '.$propiedad[0]['comuna'].', #'.$id_propiedad.'</h2>
                                 <!-- Icon Divider-->
@@ -356,7 +359,7 @@ switch ($opcion) {
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded" src="'.$frontis.'" alt="..." />
+                                <img class="imagen-modal-buscador rounded" src="'.$frontis.'" alt="..." />
 
                                 <div class="row mb-4">';
         for ($i=1; $i < count($imagen); $i++) {
@@ -388,7 +391,7 @@ switch ($opcion) {
                                     </tr>
                                     <tr>
                                         <td class="textoIzquirda">Dirección</td>
-                                        <td class="textoIzquirda">'.$propiedad[0]['direccion'].'</td>
+                                        <td class="textoIzquirda">'.$direccion_parcial.'</td>
                                         <td class="textoIzquirda">Baños</td>
                                         <td class="textoIzquirda">'.$propiedad[0]['banos'].'</td>
                                     </tr>
@@ -400,7 +403,7 @@ switch ($opcion) {
                                     </tr>
                                 </table>
                                 <div class="modal-footer mt-3">
-                                    <!--button type="button" class="btn btn-primary">Save changes</button -->
+                                    <button class="btn btn-success" onclick="reservar('.$id_propiedad.')">Mas Detalles</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>

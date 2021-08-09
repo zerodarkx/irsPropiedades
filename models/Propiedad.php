@@ -275,6 +275,152 @@ class Propiedad extends Model{
 		return $data;
 	}
 
+  public function loginUsuario($user, $password){
+    $this->query = "SELECT 
+                      *
+                    FROM propiedad_usuario
+                    WHERE user_propiedad = '$user' AND pass_propiedad = MD5('$password') AND estado_usuario = 2";
+		
+		$this->get_query();
+
+		$data = array();
+
+		foreach ($this->rows as $key => $value) {
+			array_push($data, $value );
+		}
+		return $data;
+  }
+
+  public function setPujaPropiedad($data_puja = array()){
+    foreach ($data_puja as $key => $value) {
+      $$key = $value;
+    }
+
+    $this->query = "UPDATE propiedad_subasta SET
+                      estado_subasta = 0
+                    WHERE id_propiedad = $id_propiedad";
+
+    $this->set_query();
+
+    $this->query = "INSERT INTO propiedad_subasta (id_propiedad, id_usuario, porcentaje, valor_antesPuja, valor_conPuja) 
+                    VALUES ('$id_propiedad', '$id_usuario', '$porcentaje', '$valor_antesPuja', '$valor_conPuja') ";
+
+    $val = $this->set_query();
+    return $val;
+  }
+
+  public function getValorPuja($id_propiedad = ''){
+    $this->query = "SELECT 
+                      t1.valor_propiedad AS v_propiedad,
+                      t2.valor_conPuja AS v_puja
+                    FROM propiedad AS t1
+                    LEFT JOIN propiedad_subasta AS t2 ON (t2.id_propiedad = t1.id_propiedad)
+                    WHERE t1.id_propiedad = $id_propiedad
+                    ORDER BY t2.id_subasta DESC";
+		
+		$this->get_query();
+
+		$data = array();
+
+		foreach ($this->rows as $key => $value) {
+			array_push($data, $value );
+		}
+		return $data;
+  }
+
+  public function getUsuarioPerfil($id_usuario = ''){
+    $this->query = "SELECT 
+                      *
+                    FROM propiedad_usuario
+                    WHERE id_usuario = $id_usuario";
+		
+		$this->get_query();
+
+		$data = array();
+
+		foreach ($this->rows as $key => $value) {
+			array_push($data, $value );
+		}
+		return $data;
+  }
+
+  public function changePassword($data_password = array()){
+    foreach ($data_password as $key => $value) {
+      $$key = $value;
+    }
+
+    $this->query = "UPDATE propiedad_usuario SET
+                    pass_propiedad = MD5('$password_usuario')
+                    WHERE id_usuario = $id_usuario";
+
+    $val = $this->set_query();
+    return $val;
+  }
+
+  public function setRegistroUsuario($data_registro = array()){
+    foreach ($data_registro as $key => $value) {
+      $$key = $value;
+    }
+
+    $this->query = "INSERT INTO propiedad_usuario (user_propiedad, pass_propiedad, nombre_usuario, telefono_usuario, correo_usuario, rut_usuario)
+                    VALUES ('$user', MD5('$pass_usu'), '$nom_com', '$tel_usu', '$correo_usu', '$rut_usu') ";
+
+    $val = $this->set_query();
+    return $val;
+  }
+
+  public function getPropiedadesSubastadasPorUsuario($id_usuario = ''){
+    $this->query = "SELECT
+                      t1.id_subasta AS id,
+                      t1.id_propiedad AS propiedad,
+                      MAX(t1.valor_conPuja) AS valor,
+                      MAX(t1.valor_antesPuja) AS antes_valor,
+                      t3.nombre_comuna AS comuna,
+                      t4.nombre_region AS region
+                    FROM propiedad_subasta AS t1
+                    INNER JOIN propiedad AS t2 ON (t2.id_propiedad = t1.id_propiedad)
+                    INNER JOIN comunas AS t3 ON (t3.id_comuna = t2.id_comuna)
+                    INNER JOIN regiones AS t4 ON (t4.id_region = t3.id_region)
+                    WHERE t1.id_usuario = $id_usuario AND t1.estado_subasta = 1
+                    GROUP BY t1.id_propiedad
+                    ORDER BY t1.valor_conPuja DESC";
+
+    $this->get_query();
+
+    $data = array();
+
+    foreach ($this->rows as $key => $value) {
+      array_push($data, $value );
+    }
+    return $data;
+  }
+
+  public function getPropiedadesSubastadasPerdidasPorUsuario($id_usuario = '', $query){
+    $this->query = "SELECT
+                      t1.id_subasta AS id,
+                      t1.id_propiedad AS propiedad,
+                      MAX(t1.valor_conPuja) AS valor,
+                      MAX(t1.valor_antesPuja) AS antes_valor,
+                      t3.nombre_comuna AS comuna,
+                      t4.nombre_region AS region
+                    FROM propiedad_subasta AS t1
+                    INNER JOIN propiedad AS t2 ON (t2.id_propiedad = t1.id_propiedad)
+                    INNER JOIN comunas AS t3 ON (t3.id_comuna = t2.id_comuna)
+                    INNER JOIN regiones AS t4 ON (t4.id_region = t3.id_region)
+                    WHERE t1.id_usuario = $id_usuario AND t1.estado_subasta = 0 AND t1.id_propiedad NOT IN ($query)
+                    GROUP BY t1.id_propiedad
+                    ORDER BY t1.valor_conPuja DESC";
+
+    $this->get_query();
+
+    $data = array();
+
+    foreach ($this->rows as $key => $value) {
+      array_push($data, $value );
+    }
+    return $data;
+  }
+
   public function __destruct(){
     $this;
   }

@@ -71,7 +71,7 @@ const selectPais = () => {
     })
     .done(function (result) {
         document.getElementById('pais').innerHTML = result;
-        //document.getElementById('pais_subasta').innerHTML = result;
+        document.getElementById('pais_subasta').innerHTML = result;
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         alert('Error!! : ' + jqXHR.status);
@@ -115,7 +115,7 @@ const selectPropiedad = () => {
     })
     .done(function (result) {
         document.getElementById('propiedad').innerHTML = result;
-        //document.getElementById('propiedad_subasta').innerHTML = result;
+        document.getElementById('propiedad_subasta').innerHTML = result;
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         alert('Error!! : ' + jqXHR.status);
@@ -181,13 +181,45 @@ const destacadosSubasta = () => {
 selectPropiedad();
 selectPais();
 destacados();
-//destacadosSubasta();
+destacadosSubasta();
 
 const reservar = (propiedad) => {
-    //detallePropiedad
-    document.getElementById("opc").value = "1";
-    document.getElementById("detatllepropiedad").value = propiedad;
+    $.post("./funciones", {
+        f: 'inicio_modal',
+        opc: 4,
+        id_propiedad: propiedad
+    })
+    .done(function (result) {
+        let data = JSON.parse(result);
+        let opcion = 0;
+        switch (data.id_estado) {
+            case '2':
+                opcion = 1;
+                break;
+        
+            default:
+                opcion = 2;
+                break;
+        }
+        document.getElementById("opc").value = opcion;
+        document.getElementById("detallepropiedad").value = propiedad;
 
-    let formulario = document.getElementById("detallePropiedad");
-    formulario.submit();
+        let formulario = document.getElementById("form-detallePropiedad");
+        formulario.submit();
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        alert('Error!! : ' + jqXHR.status);
+    });
+    
+}
+
+const consulta = (form) => {
+    $.post("./funciones", $("#"+form).serialize())
+    .done(function (result) {
+        swal.fire("Consulta Exitosa", "Estimado(a), pronto un ejecutivo se pondra en contacto con usted.", "success");
+        document.getElementById(form).reset();
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        alert('Error!! : ' + jqXHR.status);
+    });
 }

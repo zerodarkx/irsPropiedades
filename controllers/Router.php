@@ -4,6 +4,9 @@ class Router{
 	public $ruta;
 
 	public function __construct( $ruta ){
+		if( !isset($_SESSION) )  session_start();
+
+		if(!isset($_SESSION['ok'])) $_SESSION['ok'] = false;
 
 		$controlador = new ViewController();
 		
@@ -36,8 +39,31 @@ class Router{
 			case 'detallePropiedad':
 				$controlador->load_view( 'detallePropiedad' );
 				break;
+
+			case 'detallePropiedadFacebook':
+				$controlador->load_view( 'externo-detalle' );
+				break;
+
 			case 'correo':
 				$controlador->load_view( 'prueba' );
+				break;
+
+			case 'login':
+				$controlador->load_view( 'intranet/login' );
+				break;
+
+			case 'intranet':
+				if($_SESSION['ok']){
+					$controlador->load_view( 'intranet/index' );
+				}else{
+					header('Location: ./login');
+				}
+				
+				break;
+
+			case 'logout':
+				session_destroy();
+				header('Location: ./login');
 				break;
 				
 			default:

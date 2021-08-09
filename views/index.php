@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <title>IRS Propiedades</title>
     <!-- Favicon-->
-    <link rel="shortcut icon" type="image/jpg" href="./public/img/IRS1.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="./public/img/logos/logo_32.jpg"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="./public/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="./manifest.json">
 
 </head>
 
@@ -49,9 +50,11 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#destacados">Destacados</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/ingresar">Ingresar</a></li>
+                            href="/ingresar">Ingresar</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="#contact">Contacto</a></li>
+                            href="#contact">Contacto</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="./login">Acceder</a></li>
                     </ul>
                 </div>
             </div>
@@ -149,6 +152,13 @@
                 </div>
             </div>
             </form>
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <a href="https://creditotal.cl/" target="_blank">
+                        <img src="./public/img/banner_creditotal.jpg" alt="" class="img-thumbnail">
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Portfolio Section-->
@@ -169,7 +179,7 @@
             </div>
         </div>
     </section>
-    <!--
+    
     <section class="page-section" id="buscadorSubasta">
         <div class="container">
         
@@ -190,12 +200,12 @@
                 </div>
                 <div class="col-md-3">
                     <label for="">Pais</label>
-                    <select name="pais_subasta" id="pais_subasta" onchange="selectRegion(this.value)" class="custom-select">
+                    <select name="pais_subasta" id="pais_subasta" onchange="selectRegion(this.value, '_subasta')" class="custom-select">
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label for="">Región</label>
-                    <select name="region_subasta" id="region_subasta" onchange="selectComuna(this.value)" class="custom-select">
+                    <select name="region_subasta" id="region_subasta" onchange="selectComuna(this.value, '_subasta')" class="custom-select">
                         <option value="">Seleccione Pais</option>
                     </select>
                 </div>
@@ -248,7 +258,7 @@
             </div>
         </div>
     </section>
-    -->
+    
     <!-- Contact Section-->
     <section class="page-section" id="contact">
         <div class="container">
@@ -263,36 +273,37 @@
             <!-- Contact Section Form-->
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-xl-7">
-                    <form>
+                    <form id="form-contacto" onsubmit="return false">
+                        <input type="hidden" name="f" value="propiedad_function">
+                        <input type="hidden" name="opc" value="4">
                         <div class="form-floating">
-                            <input class="form-control" id="inputName" type="text" placeholder="Ingrese su nombre" />
+                            <input class="form-control" id="inputName" name="inputName" type="text" placeholder="Ingrese su nombre" />
                             <label for="inputName">Nombre</label>
                         </div>
                         <div class="form-floating">
-                            <input class="form-control" id="inputEmail" type="email"
+                            <input class="form-control" id="inputEmail" name="inputEmail" type="email"
                                 placeholder="ingrese su Correo..." />
                             <label for="inputEmail">Correo</label>
                         </div>
                         <div class="form-floating">
-                            <input class="form-control" id="inputPhone" type="tel"
+                            <input class="form-control" id="inputPhone" name="inputPhone" type="tel"
                                 placeholder="Ingrese su Numero de Contacto" />
                             <label for="inputPhone">Numero Telefonico</label>
                         </div>
                         <div class="form-floating">
-                            <textarea class="form-control" id="inputMessage" placeholder="Ingrese su Consulta"
+                            <textarea class="form-control" id="inputMessage" name="inputMessage" placeholder="Ingrese su Consulta"
                                 style="height: 12rem"></textarea>
                             <label for="inputMessage">Consulta</label>
                         </div>
                         <br />
-                        <button class="btn btn-primary btn-xl" type="submit">Enviar</button>
+                        <button class="btn btn-primary btn-xl" onclick="consulta(this.form.id)">Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
     <!--form extras -->
-    <form id="detallePropiedad" action="./detallePropiedad" method="post">
+    <form id="form-detallePropiedad" action="./detallePropiedad" method="post">
         <input type="hidden" id="opc" name="opc">
-        <input type="hidden" id="detatllepropiedad" name="propiedad">
+        <input type="hidden" id="detallepropiedad" name="propiedad">
     </form>
-    

@@ -1,26 +1,22 @@
 <!-- Footer-->
-<footer class="footer text-center">
+    <footer class="footer text-center">
         <div class="container">
             <div class="row">
                 <!-- Footer Location-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Ubicación</h4>
+                <div class="col-md-6 align-self-center">
                     <p class="lead mb-0">
-                        Apoquindo 5583, Oficina 151
-                        <br />
-                        Las Condes. Chile
+                        <i class="fa fa-map"></i> Apoquindo 5583, Oficina 151 Las Condes. Chile
+                    </p>
+                    <p class="lead mb-0">
+                        <i class="fa fa-phone" aria-hidden="true"></i> +562 2929 9138
+                    </p>
+                    <p class="lead mb-0">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> contacto@irspropiedades.com
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    
-                </div>
-                <!-- Footer About Text-->
-                <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">IRS Propiedades</h4>
-                    <p class="lead mb-0">
-                        
-                    </p>
+                <div class="col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.4999596686193!2d-70.57309358480173!3d-33.41020758078543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cede35c05d97%3A0x64b0ea99ddd76277!2sAv.%20Apoquindo%205583%2C%20oficina%20151%2C%20Las%20Condes%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1628175861682!5m2!1ses-419!2scl" class="w-100" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -74,26 +70,33 @@
     switch ($footer) {
         case 'index':
             echo '
-                <script src="./public/js/scripts.js"></script>
+                <script src="./public/js/scripts.js?version='.$version.'"></script>
             ';
             break;
 
         case 'buscador':
             echo '
-                <script src="./public/js/buscador.js"></script>
+                <script src="./public/js/buscador.js?version='.$version.'"></script>
             ';
             break;
 
         case 'ingresar':
             echo '
                 <script src="./public/js/jquery-validation/jquery.validate.min.js"></script>
-                <script src="./public./js/ingresar.js?version='.$version.'"></script>
+                <script src="./public/js/ingresar.js?version='.$version.'"></script>
             ';
             break;
 
         case 'detallePropiedad':
             echo '
                 <script src="./public/js/detallePropiedad.js?version='.$version.'"></script>
+            ';
+            break;
+
+        case 'login':
+            echo '
+                <script src="./public/js/jquery-validation/jquery.validate.min.js"></script>
+                <script src="./public/js/login.js?version='.$version.'"></script>
             ';
             break;
         

@@ -20,7 +20,7 @@
     <meta name="author" content="" />
     <title>IRS Propiedades</title>
     <!-- Favicon-->
-    <link rel="shortcut icon" type="image/jpg" href="./public/img/IRS1.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="./public/img/logo_telefono.jpg"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/">Inicio</a></li>
+                            href="/">Inicio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/buscador">Buscador</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
@@ -56,9 +56,11 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/#destacados">Destacados</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/ingresar">Ingresar</a></li>
+                            href="/ingresar">Ingresar</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="/#contact">Contacto</a></li>
+                            href="/#contact">Contacto</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="./login">Acceder</a></li>
                     </ul>
                 </div>
             </div>

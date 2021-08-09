@@ -162,6 +162,7 @@ const detallePropiedad = (propiedad) => {
         id_propiedad: propiedad
     })
     .done(function (result) {
+        console.log(result);
         document.getElementById('portfolioModal').innerHTML = result;
         $("#portfolioModal").modal('show');
     })

@@ -10831,7 +10831,7 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding: 3rem 0;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11130,4 +11130,8 @@ html {
 
 .imagenCaruselLargo{
   height: 600px !important;
+}
+
+.secciones_solas{
+  padding: 6rem 0;
 }

@@ -80,6 +80,19 @@ switch ($opcion) {
         echo $html;
         break;
 
+    case '4':
+        $id_propiedad = $_POST['id_propiedad'];
+
+        $propiedades_controller = new PropiedadController();
+        $propiedad              = $propiedades_controller->get($id_propiedad);
+
+        echo json_encode($propiedad[0]);
+        break;
+
+    case '5':
+        echo $_POST['data'];
+        break;
+
     default:
         echo "no llame a nada";
         break;
