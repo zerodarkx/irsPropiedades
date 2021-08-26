@@ -52,9 +52,10 @@ class EnviarCorreo{
     public function sendNotificacion($data_correo = array()){
         $mail = $this->configuracion_creditotal();
 
-        $mail->addAddress("cponce@irschile.cl");
-        $mail->addAddress("mnallar@irsinversiones.com");
-        // $mail->addAddress("jellies@creditotal.cl");
+        // $mail->addAddress("cponce@irschile.cl");
+        // $mail->addAddress("mnallar@irsinversiones.com");
+        // $mail->addAddress("dmunoz@creditotal.com");
+        $mail->addAddress("jellies@creditotal.cl");
 
         $mail->Subject  = $data_correo['asunto_correo'];
         $mail->Body     = $data_correo['cuerpo_correo'];

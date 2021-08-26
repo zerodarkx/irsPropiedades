@@ -8,7 +8,7 @@
                         <i class="fa fa-map"></i> Apoquindo 5583, Oficina 151 Las Condes. Chile
                     </p>
                     <p class="lead mb-0">
-                        <i class="fa fa-phone" aria-hidden="true"></i> +562 2929 9138
+                        <i class="fa fa-phone" aria-hidden="true"></i> +569 7533 9063
                     </p>
                     <p class="lead mb-0">
                         <i class="fa fa-envelope" aria-hidden="true"></i> contacto@irspropiedades.com
