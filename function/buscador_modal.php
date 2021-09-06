@@ -29,6 +29,9 @@ switch ($opcion) {
             foreach ($buscador as $key => $value) {
                 $imagen_controllador = new ImagenController();
                 $imagen = $imagen_controllador->getImagenFrontis($value['id']);
+                $direccion_controller2 = new PropiedadController();
+                $direccionProvisoria = $direccion_controller2->getDetallePropiedad($value['id']);
+                $direccionProvisoria = (count($direccionProvisoria) > 0) ? $direccionProvisoria[0]['direccion'] : '';
                 if (count($imagen) > 0 && !file_exists('https://dsalp.com/public/propiedades/'.$value['id'].'/')) {
                     $path = 'https://dsalp.com/public/propiedades/'.$value['id'].'/'.$imagen[0]['arc'];
                 }else{
@@ -51,7 +54,7 @@ switch ($opcion) {
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td>'.$value['direccion'].'</td>
+                                    <td>'.$direccionProvisoria.'</td>
                                 </tr>
                                 <tr>
                                     <td>Valor Propiedad</td>

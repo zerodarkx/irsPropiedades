@@ -62,7 +62,7 @@ abstract class Model
 	}
 	//trae resultados de una consilta de tipo select en un array
 	protected function get_query(){
-		// error_log($this->query);
+		error_log($this->query);
 		$this->db_open();
 		$result = $this->conn->query($this->query);
 		while( $this->rows[] = $result->fetch_assoc());
